@@ -18,18 +18,18 @@
 
 //让这个类一初始化就是组样式的
 - (instancetype)init {
-//    if (@available(iOS 11.0, *)) {
-//        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;
-//        self.tableView.contentInset = UIEdgeInsetsMake(10, 0,0, 0);
-//    }
+    if (@available(iOS 11.0, *)) {
+        self.tableView.estimatedRowHeight = 0;
+        self.tableView.estimatedSectionFooterHeight = 0;
+        self.tableView.estimatedSectionHeaderHeight = 0;
+    }
     
     return [self initWithStyle:UITableViewStyleGrouped];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
-//    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
 
 }
@@ -85,6 +85,14 @@
         // 执行block
         item.operation();
     }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 5;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 15;
 }
 
 @end
